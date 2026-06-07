@@ -146,7 +146,7 @@ JOIN order_details o ON l.order_id = o.order_id
 GROUP BY order_month, category)
 
 SELECT 
-	month_of_order_date, 
+	TO_CHAR(month_of_order_date, 'YYYY-MM') AS order_month, 
 	o.category, 
 	total_revenue, 
 	target,
@@ -201,7 +201,7 @@ FROM orders_date
 )
 
 SELECT 
-	order_month,
+	TO_CHAR(order_month, 'YYYY-MM') AS order_month,
 	total_revenue,
 	total_revenue - prev_month_revenue AS revenue_change,
 	ROUND((total_revenue - prev_month_revenue)/prev_month_revenue * 100,2) as growth_pct
